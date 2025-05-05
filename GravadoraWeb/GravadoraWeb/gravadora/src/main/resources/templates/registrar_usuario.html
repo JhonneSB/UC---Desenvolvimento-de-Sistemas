@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt"> <!-- Define o idioma da página como português -->
+<head>
+    <meta charset="UTF-8"> <!-- Define a codificação para suportar caracteres acentuados -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Garante que a página seja responsiva -->
+    <title>Registrar - Gravadora</title> <!-- Define o título da página -->
+
+    <!-- Importa a folha de estilo para personalizar a página -->
+    <link rel="stylesheet" th:href="@{/css/styleRegistro.css}">
+</head>
+<body>
+    <div class="register-container"> <!-- Container principal para o formulário de registro -->
+        <h1>Registrar-se</h1> <!-- Título da página -->
+
+        <!-- Formulário de registro -->
+        <form action="#" method="post" onsubmit="return validarFormulario()"> 
+            <!-- A função validarFormulario() será chamada antes do envio do formulário -->
+
+            <!-- Campo para o nome de usuário -->
+            <div class="form-group">
+                <label for="nome">Nome de Usuário</label>
+                <input type="text" id="nome" name="nome" required> <!-- Campo obrigatório -->
+            </div>
+
+            <!-- Campo para o e-mail -->
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required> <!-- Campo obrigatório -->
+            </div>
+
+            <!-- Campo para a senha -->
+            <div class="form-group">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" name="senha" required> <!-- Campo obrigatório -->
+                <p id="erroSenha" style="color: red; display: none;">A senha deve ter no mínimo 6 caracteres.</p> 
+                <!-- Mensagem de erro oculta, exibida caso a senha seja inválida -->
+            </div>
+
+            <!-- Campo para confirmar a senha -->
+            <div class="form-group">
+                <label for="confirmarSenha">Confirmar Senha</label>
+                <input type="password" id="confirmarSenha" name="confirmarSenha" required> <!-- Campo obrigatório -->
+                <p id="erroConfirmarSenha" style="color: red; display: none;">As senhas não coincidem.</p> 
+                <!-- Mensagem de erro oculta, exibida caso as senhas não sejam iguais -->
+            </div>
+
+            <!-- Botão para enviar o formulário -->
+            <button type="submit" class="btn">Registrar</button>
+        </form>
+
+        <!-- Link para voltar à página de login -->
+        <p class="login-text"><a th:href="@{/login}">Voltar para o Login</a></p>
+    </div>
+
+    <!-- Script para validar os campos do formulário antes do envio -->
+    <script>
+        function validarFormulario() {
+            var senha = document.getElementById("senha").value;
+            var confirmarSenha = document.getElementById("confirmarSenha").value;
+            var erroSenha = document.getElementById("erroSenha");
+            var erroConfirmarSenha = document.getElementById("erroConfirmarSenha");
+
+            // Verifica se a senha tem pelo menos 6 caracteres
+            if (senha.length < 6) {
+                erroSenha.style.display = "block"; // Exibe a mensagem de erro
+                return false; // Impede o envio do formulário
+            } else {
+                erroSenha.style.display = "none"; // Oculta a mensagem de erro se a senha for válida
+            }
+
+            // Verifica se as senhas coincidem
+            if (senha !== confirmarSenha) {
+                erroConfirmarSenha.style.display = "block"; // Exibe a mensagem de erro
+                return false; // Impede o envio do formulário
+            } else {
+                erroConfirmarSenha.style.display = "none"; // Oculta a mensagem de erro se as senhas coincidirem
+            }
+
+            return true; // Se todas as validações forem bem-sucedidas, permite o envio do formulário
+        }
+    </script>
+</body>
+</html>

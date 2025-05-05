@@ -1,0 +1,262 @@
+/* Estilos gerais */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('fundo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Overlay escuro para evitar clareamento da imagem */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 20, 40, 0.8);
+    z-index: -1;
+}
+
+/* Container principal */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    backdrop-filter: blur(8px);
+    background-color: rgba(20, 30, 60, 0.6);
+    border-radius: 12px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(15, 25, 50, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
+    backdrop-filter: blur(6px);
+}
+
+header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+/* Botão Adicionar */
+.btn-add {
+    background-color: #2196F3;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn-add:hover {
+    background-color: #1976d2;
+}
+
+/* Tabela */
+.table-container {
+    margin-bottom: 40px;
+}
+
+/* Tabelas */
+.artistas-table,
+.albuns-table,
+.gravadoras-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(20, 30, 50, 0.7);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Cabeçalhos */
+.artistas-table thead,
+.albuns-table thead,
+.gravadoras-table thead {
+    background-color: rgba(30, 50, 80, 0.9);
+    color: #fff;
+    text-align: center;
+}
+
+/* Células */
+.artistas-table th,
+.albuns-table th,
+.gravadoras-table th,
+.artistas-table td,
+.albuns-table td,
+.gravadoras-table td {
+    padding: 12px;
+    font-size: 16px;
+    border-bottom: 1px solid #444;
+    text-align: center;
+}
+
+.artistas-table th,
+.albuns-table th,
+.gravadoras-table th {
+    font-weight: bold;
+}
+
+.artistas-table td,
+.albuns-table td,
+.gravadoras-table td {
+    color: #cfd8dc;
+}
+
+/* Ações */
+.artistas-table td.actions,
+.albuns-table td.actions,
+.gravadoras-table td.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.artistas-table td.actions div,
+.albuns-table td.actions div,
+.gravadoras-table td.actions div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.artistas-table td.actions div::before,
+.albuns-table td.actions div::before,
+.gravadoras-table td.actions div::before {
+    content: "|";
+    color: #90a4ae;
+    font-weight: bold;
+}
+
+/* Botões de ação */
+.btn-edit {
+    font-weight: bold;
+    color: #64b5f6;
+    text-decoration: none;
+}
+
+.btn-edit:hover {
+    color: #42a5f5;
+}
+
+.btn-delete,
+.btn-delete2,
+.btn-delete3 {
+    font-weight: bold;
+    color: #ef5350;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.btn-delete:hover,
+.btn-delete2:hover,
+.btn-delete3:hover {
+    color: #e53935;
+}
+
+/* Botão Voltar */
+.btn-back {
+    color: #90a4ae;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.btn-back:hover {
+    color: #ffffff;
+}
+
+/* Estilização do select dentro das tabelas */
+.artistas-table td select,
+.gravadoras-table td select {
+    padding: 10px 14px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: none;
+    background-color: rgba(40, 60, 90, 0.9);
+    color: #e0f7fa;
+    width: 100%;
+    max-width: 240px;
+    margin: 0 auto;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    appearance: none;
+    text-align: center;
+    text-align-last: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.artistas-table td select:focus,
+.gravadoras-table td select:focus {
+    outline: none;
+    background-color: rgba(55, 85, 120, 0.95);
+    box-shadow: 0 0 6px rgba(33, 150, 243, 0.6);
+}
+
+.artistas-table td select option,
+.gravadoras-table td select option {
+    background-color: #1c2a3a;
+    color: #ffffff;
+    padding: 8px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    .btn-add {
+        margin-top: 10px;
+    }
+
+    .table-container {
+        margin-bottom: 20px;
+    }
+
+    .artistas-table,
+    .albuns-table,
+    .gravadoras-table {
+        font-size: 14px;
+    }
+
+    .artistas-table td select {
+        font-size: 14px;
+        max-width: 100%;
+    }
+}

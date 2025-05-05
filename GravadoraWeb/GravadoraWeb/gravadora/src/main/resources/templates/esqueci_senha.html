@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Declaração do documento como HTML5 e uso do namespace do Thymeleaf -->
+
+<head>
+    <title>Esqueci minha senha</title> <!-- Título da página exibido na aba do navegador -->
+    <link th:href="@{/css/styleES.css}" rel="stylesheet"> <!-- Importação do arquivo CSS para estilização da página -->
+</head>
+
+<body>
+    <div class="container"> <!-- Container principal que agrupa o conteúdo da página -->
+        <h2>Recuperação de Senha</h2> <!-- Título da seção -->
+
+        <!-- Formulário para recuperação de senha -->
+        <form action="/esqueci-senha" method="post" class="form">
+            <div class="form-group">
+                <label for="email">Digite seu e-mail cadastrado:</label> <!-- Rótulo do campo de e-mail -->
+                <input type="email" name="email" id="email" required> <!-- Campo de entrada para o e-mail, obrigatório -->
+            </div>
+
+            <!-- Botão para enviar o formulário -->
+            <button type="submit" class="btn">Enviar</button>
+
+            <!-- Link para retornar à tela de login -->
+            <p class="login-text">
+                <a th:href="@{/login}">Voltar para o Login</a> <!-- Thymeleaf gera o link dinamicamente -->
+            </p>
+        </form>
+
+        <!-- Exibição de mensagens de erro caso haja problemas (ex: e-mail não encontrado) -->
+        <p class="error" th:text="${Erro}"></p> <!-- O Thymeleaf insere a mensagem de erro dinamicamente -->
+    </div>
+</body>
+
+</html>

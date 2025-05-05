@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Define a linguagem de template Thymeleaf -->
+<head>
+    <!-- Importa a folha de estilo externa para estilização da página -->
+    <link th:href="@{/css/styleTC.css}" rel="stylesheet">
+    <title>Trocar Senha</title> <!-- Define o título da página -->
+</head>
+<body>
+    <div class="container"> <!-- Container principal da página -->
+        <h2>Trocar Senha</h2> <!-- Título principal -->
+
+        <!-- Formulário para troca de senha -->
+        <form action="/trocar-senha" method="post" class="form" onsubmit="return validarSenha()"> 
+            <!-- A função validarSenha() será chamada antes do envio do formulário -->
+
+            <!-- Campo para inserir a nova senha -->
+            <div class="form-group">
+                <label for="novaSenha">Nova Senha:</label>
+                <input type="password" name="novaSenha" id="novaSenha" required> <!-- Campo obrigatório -->
+                <p id="erroSenha" style="color: red; display: none;">A senha deve ter no mínimo 6 caracteres.</p>
+                <!-- Mensagem de erro oculta, exibida caso a senha seja muito curta -->
+            </div>
+
+            <!-- Campo para confirmar a nova senha -->
+            <div class="form-group">
+                <label for="confirmarSenha">Confirmar Senha</label>
+                <input type="password" id="confirmarSenha" name="confirmarSenha" required> <!-- Campo obrigatório -->
+                <p id="erroConfirmarSenha" style="color: red; display: none;">As senhas não coincidem.</p>
+                <!-- Mensagem de erro oculta, exibida caso as senhas sejam diferentes -->
+            </div>
+
+            <!-- Botão para enviar o formulário -->
+            <button type="submit" class="btn">Alterar Senha</button>
+
+            <!-- Link para voltar à página de login -->
+            <p class="login-text"><a th:href="@{/login}">Voltar para o Login</a></p>
+        </form>
+    </div>
+
+    <!-- Script para validar os campos do formulário antes do envio -->
+    <script>
+        function validarSenha() {
+            var senha = document.getElementById("novaSenha").value;
+            var confirmarSenha = document.getElementById("confirmarSenha").value;
+            var erroSenha = document.getElementById("erroSenha");
+            var erroConfirmarSenha = document.getElementById("erroConfirmarSenha");
+
+            // Verifica se a senha tem pelo menos 6 caracteres
+            if (senha.length < 6) {
+                erroSenha.style.display = "block"; // Exibe a mensagem de erro
+                return false; // Impede o envio do formulário
+            } else {
+                erroSenha.style.display = "none"; // Oculta a mensagem de erro se a senha for válida
+            }
+
+            // Verifica se as senhas coincidem
+            if (senha !== confirmarSenha) {
+                erroConfirmarSenha.style.display = "block"; // Exibe a mensagem de erro
+                return false; // Impede o envio do formulário
+            } else {
+                erroConfirmarSenha.style.display = "none"; // Oculta a mensagem de erro se as senhas coincidirem
+            }
+
+            return true; // Se todas as validações forem bem-sucedidas, permite o envio do formulário
+        }
+    </script>
+</body>
+</html>

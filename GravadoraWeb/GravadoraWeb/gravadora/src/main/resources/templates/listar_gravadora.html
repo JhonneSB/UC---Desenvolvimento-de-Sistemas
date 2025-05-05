@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link th:href="@{/css/styleList.css}" rel="stylesheet">
+    <title>Lista de Gravadoras</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <header>
+            <h1>Lista de Gravadoras</h1>
+            <a class="btn-add" href="/gravadoras/cadastrar_gravadora">Cadastrar Nova Gravadora</a>
+        </header>
+
+        <div class="table-container">
+            <table class="gravadoras-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CNPJ</th>
+                        <th>Sede</th>
+                        <th>Álbuns Vinculados</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="gravadora : ${gravadoras}">
+                        <td th:text="${gravadora.id}"></td>
+                        <td th:text="${gravadora.nome}"></td>
+                        <td th:text="${gravadora.cnpj}"></td>
+                        <td th:text="${gravadora.sede}"></td>
+                        <td>
+                            <select>
+                                <option th:if="${#lists.isEmpty(albunsPorGravadora[gravadora.id])}" disabled selected>
+                                    Nenhum álbum
+                                </option>
+                                <option th:each="album : ${albunsPorGravadora[gravadora.id]}"   
+                                        th:text="${album.nome}">
+                                </option>
+                            </select>
+                        </td>
+                        <td>
+                            <a class="btn-edit" th:href="@{/gravadoras/editar_gravadora/{id}(id=${gravadora.id})}">Editar</a> |
+                            <a class="btn-delete3" th:href="@{/gravadoras/deletar_gravadora/{id}(id=${gravadora.id})}"
+                               onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:if="${erro}" class="alert alert-danger">
+            <p th:text="${erro}"></p>
+        </div>
+
+        <footer>
+            <a class="btn-back" href="/">Voltar</a>
+        </footer>
+    </div>
+</body>
+
+</html>

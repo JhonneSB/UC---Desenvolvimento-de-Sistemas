@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Declaração do documento HTML com suporte ao Thymeleaf -->
+
+<head>
+    <link th:href="@{/css/styleList.css}" rel="stylesheet"> <!-- Importação do arquivo CSS para estilização -->
+    <title>Álbuns</title> <!-- Título da página exibido na aba do navegador -->
+</head>
+
+<body>
+    <div class="container"> <!-- Container principal da página -->
+
+        <!-- Cabeçalho da página -->
+        <header>
+            <h1>Lista de Álbuns</h1> <!-- Título principal da página -->
+            <a class="btn-add" href="/albuns/cadastrar">Cadastrar Novo Álbum</a> 
+            <!-- Botão para redirecionar para a tela de cadastro de um novo álbum -->
+        </header>
+
+        <!-- Seção da tabela que lista os álbuns -->
+        <div class="table-container">
+            <table class="albuns-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th> <!-- Coluna para o nome do álbum -->
+                        <th>Artista</th> <!-- Coluna para o nome do artista -->
+                        <th>Gênero</th> <!-- Coluna para o gênero musical -->
+                        <th>Gravadora</th> <!-- Coluna para o nome da gravadora -->
+                        <th>Lançamento</th> <!-- Coluna para a data de lançamento -->
+                        <th class="acoes-column">Ações</th> <!-- Coluna com botões de ação (Editar/Excluir) -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Thymeleaf percorre a lista de álbuns e popula a tabela -->
+                    <tr th:each="album : ${albuns}">
+                        <td th:text="${album.nome}"></td> <!-- Exibe o nome do álbum -->
+                        <td th:text="${album.nomeArtista}">Nome do Artista</td> <!-- Exibe o nome do artista -->
+                        <td th:text="${album.genero.nome}"></td> <!-- Exibe o gênero musical -->
+                        <td th:text="${album.nomeGravadora}">Nome da Gravadora</td> <!-- Exibe o nome da gravadora -->
+                        <td th:text="${album.dataFormatada}"></td>
+                        <td>
+                            <div class="action-buttons">
+                                <!-- Link para editar o álbum -->
+                                <a class="btn-edit" th:href="@{/albuns/editar/{id}(id=${album.id})}">Editar</a>
+                                <span class="separator">|</span> <!-- Separador visual entre os botões -->
+                                
+                                <!-- Formulário para excluir o álbum -->
+                                <form th:action="@{/albuns/deletar/{id}(id=${album.id})}" method="post" style="display:inline;">
+                                    <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</button>
+                                    <!-- O botão de exclusão contém um alerta de confirmação antes da remoção -->
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Rodapé com botão para voltar à tela inicial -->
+        <footer>
+            <a class="btn-back" href="/">Voltar</a> <!-- Link para retornar à página principal -->
+        </footer>
+    </div>
+</body>
+
+</html>

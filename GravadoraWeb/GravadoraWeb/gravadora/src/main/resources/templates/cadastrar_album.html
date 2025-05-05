@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Declaração do documento como HTML5 e inclusão do namespace do Thymeleaf -->
+
+<head>
+    <link th:href="@{/css/styleCad.css}" rel="stylesheet"> <!-- Importação do arquivo CSS para estilização da página -->
+    <title>Cadastrar Álbum</title> <!-- Título da página exibido na aba do navegador -->
+</head>
+
+<body>
+    <div class="form-container"> <!-- Container principal para o formulário -->
+        <h1>Cadastrar Novo Álbum</h1> <!-- Título da página -->
+
+        <!-- Formulário para cadastro de álbum -->
+        <form th:action="@{/albuns/cadastrar}" th:object="${album}" method="post" 
+              enctype="multipart/form-data" class="form"> 
+            <!-- O formulário envia os dados via POST para o endpoint "/albuns/cadastrar" -->
+            <!-- O objeto album é referenciado pelo Thymeleaf -->
+            <!-- enctype="multipart/form-data" permite envio de arquivos -->
+
+            <!-- Campo para o Nome do Álbum -->
+            <div class="form-group">
+                <label for="nome">Nome:</label> <!-- Rótulo do campo -->
+                <input type="text" id="nome" th:field="*{nome}" required /> <!-- Campo de entrada obrigatório -->
+            </div>
+
+            <!-- Campo para a Data de Lançamento -->
+            <div class="form-group">
+                <label for="lancamento">Lançamento:</label>
+                <input type="date" id="lancamento" th:field="*{lancamento}" required 
+                       th:attr="min=${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" />
+                <!-- Define a data mínima como a data atual para evitar lançamentos no passado -->
+            </div>
+
+            <!-- Artista -->
+<div class="form-group">
+    <label for="artista">Artistas:</label>
+    <select id="artista" th:field="*{artista}" required>
+        <option value="">Selecione um Artista</option>
+        <th:block th:each="artista : ${artistas}">
+            <option th:value="${artista.id}" th:text="${artista.nome}"></option>
+        </th:block>
+    </select>
+</div>
+
+<!-- Gravadora -->
+<div class="form-group">
+    <label for="gravadora">Gravadoras:</label>
+    <select id="gravadora" th:field="*{gravadora}" required>
+        <option value="">Selecione uma Gravadora</option>
+        <th:block th:each="gravadora : ${gravadoras}">
+            <option th:value="${gravadora.id}" th:text="${gravadora.nome}"></option>
+        </th:block>
+    </select>
+</div>
+
+<!-- Gênero -->
+<div class="form-group">
+    <label for="genero">Gêneros:</label>
+    <select id="genero" th:field="*{genero}" required>
+        <option value="">Selecione um Gênero</option>
+        <th:block th:each="genero : ${generos}">
+            <option th:value="${genero.id}" th:text="${genero.nome}"></option>
+        </th:block>
+    </select>
+</div>
+
+            <!-- Botão de Submissão -->
+            <div class="form-group">
+                <button type="submit">Cadastrar</button> <!-- Botão para enviar o formulário -->
+            </div>
+        </form>
+
+        <!-- Link para voltar à tela inicial -->
+        <br>
+        <a href="/">Voltar para a tela inicial</a> <!-- Link de navegação -->
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+/* Tema escuro azulado com transparência moderna */
+body {
+    background-image: url('fundo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #f5f5f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container do registro com fundo translúcido */
+.register-container {
+    background: rgba(18, 18, 40, 0.5); /* Azul escuro translúcido */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Animação de entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Título */
+h1 {
+    margin-bottom: 20px;
+    color: #cbdcff;
+    font-size: 28px;
+}
+
+/* Campos do formulário */
+.form-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #b0c4de;
+}
+
+input {
+    width: 94%;
+    padding: 12px;
+    border: 1px solid rgba(173, 216, 230, 0.2);
+    border-radius: 8px;
+    background-color: rgba(23, 34, 60, 0.3);
+    color: #e0f0ff;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #3f76a3;
+    box-shadow: 0 0 6px rgba(63, 118, 163, 0.7);
+    background-color: rgba(23, 34, 60, 0.5);
+}
+
+/* Botão azul estilizado */
+.btn {
+    background-color: rgba(28, 62, 98, 0.9);
+    color: #e0f0ff;
+    padding: 14px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background-color: rgba(22, 54, 88, 1);
+    transform: scale(1.05);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Link para login */
+.login-text {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-text a {
+    color: #7da2c3;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.login-text a:hover {
+    color: #a3c7ea;
+}

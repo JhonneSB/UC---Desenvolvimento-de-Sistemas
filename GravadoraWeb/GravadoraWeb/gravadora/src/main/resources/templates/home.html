@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Declaração do documento como HTML5 e uso do namespace do Thymeleaf -->
+
+<head>
+    <link th:href="@{/css/styleHome.css}" rel="stylesheet"> <!-- Importação do arquivo CSS para estilização da página -->
+    <title>Home - Gravadora</title> <!-- Título da página exibido na aba do navegador -->
+</head>
+
+<body>
+    <div class="home-container"> <!-- Container principal que agrupa todo o conteúdo da página -->
+
+        <!-- Cabeçalho com saudação ao usuário -->
+        <header>
+            <h1>Bem-vindo, <span th:text="${username}">Usuário</span>!</h1> <!-- O nome do usuário é inserido dinamicamente pelo Thymeleaf -->
+            <p>Explore e gerencie álbuns, artistas e gravadoras com facilidade!</p> <!-- Breve descrição da página -->
+        </header>
+
+        <!-- Seção com os cards de navegação -->
+        <div class="card-container">
+            
+            <!-- Card para cadastrar um novo álbum -->
+            <div class="card">
+                <h2>Cadastrar Novo Álbum</h2>
+                <a th:href="@{/albuns/cadastrar}" class="btn">Cadastrar</a> <!-- Link para a página de cadastro de álbuns -->
+            </div>
+
+            <!-- Card para cadastrar um novo artista -->
+            <div class="card">
+                <h2>Cadastrar Artista</h2>
+                <a th:href="@{/artistas/cadastrar_artista}" class="btn">Cadastrar</a> <!-- Link para a página de cadastro de artistas -->
+            </div>
+
+            <!-- Card para cadastrar uma nova gravadora -->
+            <div class="card">
+                <h2>Cadastrar Gravadora</h2>
+                <a th:href="@{/gravadoras/cadastrar_gravadora}" class="btn">Cadastrar</a> <!-- Link para a página de cadastro de gravadoras -->
+            </div>
+
+            <!-- Card para listar todos os álbuns -->
+            <div class="card">
+                <h2>Listar Álbuns</h2>
+                <a th:href="@{/albuns}" class="btn">Listar</a> <!-- Link para a página de listagem de álbuns -->
+            </div>
+
+            <!-- Card para listar todos os artistas -->
+            <div class="card">
+                <h2>Listar Artistas</h2>
+                <a th:href="@{/artistas}" class="btn">Listar</a> <!-- Link para a página de listagem de artistas -->
+            </div>
+
+            <!-- Card para listar todas as gravadoras -->
+            <div class="card">
+                <h2>Listar Gravadoras</h2>
+                <a th:href="@{/gravadoras}" class="btn">Listar</a> <!-- Link para a página de listagem de gravadoras -->
+            </div>
+        </div>
+
+        <!-- Seção de logout -->
+        <div class="logout-container">
+            <form action="/logout" method="get"> <!-- Formulário para logout -->
+                <button type="submit" class="logout-btn">Sair</button> <!-- Botão que permite ao usuário sair do sistema -->
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

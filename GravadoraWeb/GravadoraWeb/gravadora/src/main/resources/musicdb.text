@@ -1,0 +1,70 @@
+-- Criação do banco de dados
+
+CREATE DATABASE musicdb;
+-- Uso do banco de dados criado
+USE musicdb;
+
+-- Criação da tabela 'produto'
+CREATE TABLE album (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,  
+    nome VARCHAR(255) NOT NULL,            
+    lancamento DATE,                      
+    gravadora_id BIGINT,  -- Agora referência correta para gravadora
+    artista_id BIGINT,    -- Agora referência correta para artista
+    genero_id BIGINT     -- Agora referência correta para gênero
+);
+
+
+CREATE TABLE artista (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- Identificador único do álbum
+    nome VARCHAR(255) NOT NULL            -- Nome do artista
+
+);
+
+CREATE TABLE genero (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- Identificador único do álbum
+    nome VARCHAR(255) NOT NULL            -- Nome do artista
+
+);
+
+CREATE TABLE gravadora (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- Identificador único do álbum
+    nome VARCHAR(255) NOT NULL            -- Nome do genero
+
+);
+
+CREATE TABLE usuario (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,  -- Identificador único do álbum
+    nome VARCHAR(255) NOT NULL,            -- Nome do genero
+    email VARCHAR(255) NOT NULL,
+    senha VARCHAR(255) NOT NULL
+
+);
+
+SELECT * FROM musicdb.genero;
+INSERT INTO genero (nome) VALUES
+('Pop'),
+('Rock'),
+('Indie'),
+('Hip Hop'),
+('Rap'),
+('R&B'),
+('EDM'),
+('House'),
+('Techno'),
+('Trance'),
+('Lo-Fi'),
+('Sertanejo'),
+('MPB'),
+('Samba'),
+('Pagode'),
+('Funk'),
+('Forró'),
+('Bossa Nova'),
+('Música Clássica'),
+('Ópera'),
+('Jazz'),
+('Blues'),
+('Reggae');
+
+

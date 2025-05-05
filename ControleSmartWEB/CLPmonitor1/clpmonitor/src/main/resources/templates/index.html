@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Monitoramento de CLPs</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <style>
+        body {
+            display: flex;
+            flex-direction: row;
+            font-family: Arial;
+            margin: 40px;
+            gap: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 400px;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .container1,
+        .container2 {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            width: 550px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(6, 40px);
+            grid-template-rows: repeat(5, 40px);
+            gap: 5px;
+        }
+
+        .cell {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #aaa;
+        }
+
+        #clp4-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 110px);
+            grid-template-rows: repeat(3, 90px);
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        .send {
+            width: 110px;
+            height: 90px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: 250;
+            color: #fff;
+            text-align: center;
+        }
+
+        .pedido-vazio {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+        }
+
+        .pedido-preenchido {
+            background-color: #dc3545;
+            color: white;
+            font-weight: bold;
+        }
+
+        .refresh-button {
+            margin-top: 10px;
+            width: fit-content;
+            padding: 8px 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .refresh-button:hover {
+            background-color: #0056b3;
+        }
+
+        .refresh-clp4-container {
+            margin-top: 10px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .clp-write-section {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            margin-top: 10px;
+            width: 500px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .clp-write-section h2 {
+            margin-bottom: 10px;
+        }
+
+        .clp-write-section form {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            gap: 10px;
+        }
+
+        .clp-write-section label {
+            font-weight: bold;
+        }
+
+        .clp-write-section input,
+        .clp-write-section select,
+        .clp-write-section button {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container1">
+        <h1>Leitura dos 4 CLPs (Simulada)</h1>
+
+        <h2>CLP 1 (Matriz de 28 bytes)</h2>
+        <div id="clp1-grid" class="grid"></div>
+
+        <h2>CLP 2 e 3</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>CLP</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody id="clp-table">
+                <tr>
+                    <td>CLP 2</td>
+                    <td id="clp2">-</td>
+                </tr>
+                <tr>
+                    <td>CLP 3</td>
+                    <td id="clp3">-</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>CLP 4 (Expedição)</h2>
+        <div id="clp4-grid" class="grid"></div>
+        <div class="refresh-clp4-container">
+            <button class="botao-atualizar" onclick="atualizar()">Atualizar</button>
+    </div>
+    </div>
+
+    <div class="container2">
+        <div class="clp-write-section" id="clp-write-container" th:replace="fragments/formulario :: clp-write-fragment">
+        </div>
+    </div>
+
+    <script>
+        const eventSource = new EventSource('/clp-data-stream');
+
+        // CLP 1
+        eventSource.addEventListener('clp1-data', function (event) {
+            const data = JSON.parse(event.data);
+            window.lastClp1Data = data;
+            const byteArray = Array.isArray(data.value) ? data.value : JSON.parse(data.value);
+            const grid = document.getElementById('clp1-grid');
+            grid.innerHTML = '';
+            byteArray.forEach((val) => {
+                const cell = document.createElement('div');
+                cell.classList.add('cell', `color-${val}`);
+                grid.appendChild(cell);
+            });
+        });
+
+        // CLP 2
+        eventSource.addEventListener('clp2-data', function (event) {
+            const data = JSON.parse(event.data);
+            document.getElementById('clp2').textContent = data.value;
+        });
+
+        // CLP 3
+        eventSource.addEventListener('clp3-data', function (event) {
+            const data = JSON.parse(event.data);
+            document.getElementById('clp3').textContent = data.value;
+        });
+
+        // CLP 4
+        eventSource.addEventListener('clp4-data', function (event) {
+            const data = JSON.parse(event.data);
+            window.lastClp4Data = data;
+            const byteArray = Array.isArray(data.value) ? data.value : JSON.parse(data.value);
+            const grid = document.getElementById('clp4-grid');
+            grid.innerHTML = '';
+            byteArray.forEach((val) => {
+                const cell = document.createElement('div');
+                cell.classList.add('cell', 'send');
+
+                if (val == 0 || val.includes("= [ _ ]") || val === null || val === undefined || val === "") {
+                    cell.classList.add('pedido-vazio');
+                    cell.textContent = `[${val || '__'}]`;
+                } else {
+                    cell.classList.add('pedido-preenchido');
+                    cell.textContent = `Pedido: ${val}`;
+                }
+
+                grid.appendChild(cell);
+            });
+        });
+
+        function atualizar() {
+            fetch('/atualizarSimulacao', {
+                method: 'POST'
+            });
+        }
+
+        window.onload = function(){
+            atualizar();    
+        }
+    </script>
+</body>
+
+</html>

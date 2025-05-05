@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Declaração do documento como HTML5 e inclusão do namespace do Thymeleaf -->
+
+<head>
+    <link rel="stylesheet" href="/css/styleEdit.css"> <!-- Importação do arquivo CSS para estilização da página -->
+    <title>Editar Álbum</title> <!-- Título da página exibido na aba do navegador -->
+</head>
+
+<body>
+    <div class="container"> <!-- Container principal para o formulário de edição -->
+        <h1>Editar Álbum</h1> <!-- Título da página -->
+
+        <!-- Formulário para edição de um álbum -->
+        <form th:action="@{/albuns/editar}" th:object="${album}" method="post" enctype="multipart/form-data">
+            <!-- O formulário envia os dados via POST para o endpoint "/albuns/editar" -->
+            <!-- O objeto "album" é referenciado pelo Thymeleaf -->
+            <!-- "enctype='multipart/form-data'" permite envio de arquivos caso seja necessário -->
+
+            <!-- Campo oculto para armazenar o ID do álbum (necessário para edição) -->
+            <input type="hidden" th:field="*{id}" />
+
+            <!-- Campo para edição do nome do álbum -->
+            <div class="form-group">
+                <label for="nome">Nome do Álbum:</label> <!-- Rótulo do campo -->
+                <input type="text" th:field="*{nome}" id="nome" required /> <!-- Campo obrigatório -->
+            </div>
+
+            <!-- Campo para edição da data de lançamento -->
+            <div class="form-group">
+                <label for="lancamento">Data de Lançamento:</label>
+                <input type="date"
+                id="lancamento"
+                name="lancamento"
+                th:value="${#temporals.format(album.lancamento, 'yyyy-MM-dd')}"
+                required />
+            </div>
+
+
+            <!-- Seleção do gênero musical do álbum -->
+            <div class="form-group">
+                <label for="genero">Gêneros:</label> <!-- Rótulo do campo -->
+                <select id="genero" name="genero.id" required>
+                    <option value="">Selecione um Gênero</option>
+                    <th:block th:each="genero : ${generos}">
+                        <option th:value="${genero.id}"
+                                th:text="${genero.nome}"
+                                th:selected="${genero.id} == ${album.genero.id}">
+                        </option>
+                    </th:block>
+                </select>
+                
+            </div>
+
+            <!-- Seleção da gravadora responsável pelo álbum -->
+            <div class="form-group">
+                <label for="gravadora">Gravadoras:</label> <!-- Rótulo do campo -->
+                <select id="gravadora" name="gravadora.id" required>
+                    <option value="">Selecione uma Gravadora</option>
+                    <th:block th:each="gravadora : ${gravadoras}">
+                        <option th:value="${gravadora.id}"
+                                th:text="${gravadora.nome}"
+                                th:selected="${gravadora.id} == ${album.gravadora.id}">
+                        </option>
+                    </th:block>
+                </select>
+                
+            </div>
+            <!-- Seleção do artista responsável pelo álbum -->
+<div class="form-group">
+    <label for="artista">Artistas:</label>
+    <select id="artista" name="artista.id" required>
+        <option value="">Selecione um Artista</option>
+        <th:block th:each="artista : ${artistas}">
+            <option th:value="${artista.id}"
+                    th:text="${artista.nome}"
+                    th:selected="${artista.id} == ${album.artista.id}">
+            </option>
+        </th:block>
+    </select>
+</div>
+
+            <!-- Botão de submissão para salvar alterações -->
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Salvar Alterações</button>
+            </div>
+        </form>
+
+        <br>
+        <!-- Link para voltar à lista de álbuns -->
+        <a href="/albuns" class="btn-link">Voltar para a lista de álbuns</a>
+    </div>
+</body>
+
+</html>

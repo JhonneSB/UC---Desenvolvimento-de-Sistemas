@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/styleEdit.css">
+    <title>Editar Gravadora</title>
+    <style>
+        .error-msg {
+            color: red;
+            font-size: 14px;
+        }
+
+        .valid-msg {
+            color: green;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Editar Gravadora</h1>
+
+        <form th:action="@{/gravadoras/editar_gravadora/{id}(id=${gravadora.id})}" th:object="${gravadora}" method="post" enctype="multipart/form-data">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="form-group">
+                <label for="nome">Nome da Gravadora:</label>
+                <input type="text" th:field="*{nome}" id="nome" required />
+            </div>
+
+            <div class="form-group">
+                <label for="cnpj">CNPJ:</label>
+                <input type="text" id="cnpj" th:field="*{cnpj}" maxlength="18" required />
+                <div id="cnpj-msg"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="sede">Sede:</label>
+                <input type="text" th:field="*{sede}" id="sede" required />
+            </div>
+
+            <button type="submit" id="btn-salvar" disabled>Salvar Alterações</button>
+        </form>
+
+        <a href="/gravadoras" class="back-link">Voltar para a lista de gravadoras</a>
+    </div>
+
+    <script>
+        const cnpjInput = document.getElementById("cnpj");
+        const msgDiv = document.getElementById("cnpj-msg");
+        const btnSalvar = document.getElementById("btn-salvar");
+    
+        cnpjInput.addEventListener("input", function () {
+            let value = cnpjInput.value.replace(/\D/g, "");
+    
+            if (value.length > 14) value = value.slice(0, 14);
+            value = value.replace(/^(\d{2})(\d)/, "$1.$2");
+            value = value.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+            value = value.replace(/\.(\d{3})(\d)/, ".$1/$2");
+            value = value.replace(/(\d{4})(\d)/, "$1-$2");
+    
+            cnpjInput.value = value;
+    
+            if (value.length === 18) {
+                const isValid = validarCNPJ(value);
+                if (isValid) {
+                    msgDiv.innerHTML = "<span class='valid-msg'>CNPJ válido ✅</span>";
+                    btnSalvar.disabled = false;
+                } else {
+                    msgDiv.innerHTML = "<span class='error-msg'>CNPJ inválido ❌</span>";
+                    btnSalvar.disabled = true;
+                }
+            } else {
+                msgDiv.innerHTML = "<span class='error-msg'>CNPJ incompleto ❌</span>";
+                btnSalvar.disabled = true;
+            }
+        });
+    
+        function validarCNPJ(cnpj) {
+            cnpj = cnpj.replace(/[^\d]+/g, '');
+            if (cnpj.length !== 14) return false;
+            if (/^(\d)\1+$/.test(cnpj)) return false;
+    
+            let t = cnpj.length - 2;
+            let d = cnpj.substring(t);
+            let d1 = parseInt(d.charAt(0));
+            let d2 = parseInt(d.charAt(1));
+            let calc = x => {
+                let n = cnpj.substring(0, x);
+                let y = x - 7;
+                let s = 0;
+                for (let i = x; i >= 1; i--) {
+                    s += n.charAt(x - i) * y--;
+                    if (y < 2) y = 9;
+                }
+                let r = 11 - (s % 11);
+                return r > 9 ? 0 : r;
+            }
+    
+            return calc(t) === d1 && calc(t + 1) === d2;
+        }
+    </script>
+</body>
+</html>

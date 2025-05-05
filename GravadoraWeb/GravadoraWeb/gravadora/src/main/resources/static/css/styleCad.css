@@ -1,0 +1,125 @@
+/* Tema escuro com azul e transparência */
+body {
+    background-image: url('fundo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #f0f8ff; /* Azul claro para contraste */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Título */
+h1 {
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Container do formulário com transparência */
+.form-container {
+    background-color: rgba(15, 30, 60, 0.7); /* Azul escuro translúcido */
+    backdrop-filter: blur(10px); /* Efeito vidro fosco */
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    color: #e0e0e0;
+    box-sizing: border-box;
+}
+
+/* Formulário */
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    padding: 8px 0;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    color: #c0cbe9; /* Azul claro */
+}
+
+/* input */
+input {
+    width: 94%;
+    padding: 10px;
+    margin: 3px 0;
+    border: 1px solid #2c3e50;
+    border-radius: 8px;
+    background-color: rgba(20, 40, 70, 0.8); /* Azul mais claro translúcido */
+    color: #fff;
+    font-size: 14px;
+}
+
+/* select */
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 3px 0;
+    border: 1px solid #2c3e50;
+    border-radius: 8px;
+    background-color: rgba(20, 40, 70, 0.8); /* Azul mais claro translúcido */
+    color: #fff;
+    font-size: 14px;
+}
+
+input[type="file"] {
+    background-color: rgba(20, 40, 70, 0.8);
+}
+
+/* Botão principal */
+button {
+    background-color: #1e88e5; /* Azul vibrante */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s ease;
+    padding: 10px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #1565c0;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* Links */
+a {
+    color: #90caf9;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+a:hover {
+    color: #e3f2fd;
+}
+
+/* Foco nos campos */
+input:focus, select:focus {
+    outline: none;
+    border-color: #42a5f5;
+    box-shadow: 0 0 6px rgba(66, 165, 245, 0.8);
+}

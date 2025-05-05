@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Cadastro de Produto</title>
+    <link rel="stylesheet" href="/css/estilo.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Detalhes do Produto</h1>
+        <p><strong>ID:</strong> <span th:text="${id}"></span></p>
+        <p><strong>Produto:</strong> <span th:text="${produto}"></span></p>
+        <p><strong>Preço:</strong> <span th:text="${preco}"></span></p>
+        <p><strong>Quantidade:</strong> <span th:text="${quantidade}"></span></p>
+        <p><strong>fornecedor:</strong> <span th:text="${fornecedor}"></span></p>
+        <p><strong>lote:</strong> <span th:text="${lote}"></span></p>
+        <p><strong>dataFabricacao:</strong> <span th:text="${dataFabricacao}"></span></p>
+
+        
+    </div>
+</body>
+
+</html>

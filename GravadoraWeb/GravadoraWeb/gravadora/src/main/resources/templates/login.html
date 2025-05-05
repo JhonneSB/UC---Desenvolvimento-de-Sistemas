@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt"> <!-- Define o idioma da página como português -->
+<head>
+    <meta charset="UTF-8"> <!-- Define o conjunto de caracteres para suportar acentuação -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura a responsividade da página -->
+    <title>Login - Gravadora</title> <!-- Define o título da página exibido na aba do navegador -->
+
+    <!-- Importa o arquivo CSS local para estilização da página -->
+    <link rel="stylesheet" th:href="@{/css/styleLogin.css}">
+
+    <!-- Importa a biblioteca Toastr para exibição de notificações -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    
+    <!-- Importa a biblioteca jQuery, necessária para o funcionamento do Toastr -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
+
+<body>
+    <div class="login-container"> <!-- Container principal do formulário de login -->
+        <h1>Login</h1> <!-- Título da página -->
+
+        <!-- Exibe uma mensagem de erro caso a variável "Erro" seja enviada pelo backend -->
+        <script th:if="${Erro}">
+            toastr.error("Usuário ou senha inválidos!", "Erro"); 
+            <!-- Exibe um alerta de erro com a mensagem "Usuário ou senha inválidos!" -->
+        </script>
+
+        <!-- Formulário de login -->
+        <form action="/logar" method="post">
+            <div class="form-group">
+                <label for="email">E-mail</label> <!-- Rótulo do campo de e-mail -->
+                <input type="email" id="email" name="email" required> <!-- Campo de entrada para o e-mail -->
+            </div>
+            <div class="form-group">
+                <label for="senha">Senha</label> <!-- Rótulo do campo de senha -->
+                <input type="password" id="senha" name="senha" required> <!-- Campo de entrada para a senha -->
+            </div>
+            <button type="submit" class="btn">Entrar</button> <!-- Botão para submeter o formulário -->
+        </form>
+        
+        <!-- Link para página de registro -->
+        <p class="register-text">
+            Ainda não tem uma conta? 
+            <a th:href="@{/registrar}">Registrar-se</a> 
+        </p>
+
+        <!-- Link para a página de recuperação de senha -->
+        <p class="forgot-password-text">
+            <a href="/esqueci-senha">Esqueci minha senha</a>
+        </p>
+    </div>
+</body>
+</html>
