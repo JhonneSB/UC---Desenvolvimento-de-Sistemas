@@ -1,71 +1,76 @@
 package com.clpmonitor.clpmonitor.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
 
 @Entity
-    @Table(name = "Block")
-    public class dboBlock {
-    
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Integer id;
-    
-        @Column(nullable = false)
-        private Integer position;
-    
-        @Column(nullable = false)
-        private Integer color;
-    
-        @Column(nullable = false)
-        private Integer storageId;
-    
-        @Column
-        private String productionOrder;
-    
-        // Getters e Setters
-        public Integer getId() {
-            return id;
-        }
-    
-        public void setId(Integer id) {
-            this.id = id;
-        }
-    
-        public Integer getPosition() {
-            return position;
-        }
-    
-        public void setPosition(Integer position) {
-            this.position = position;
-        }
-    
-        public Integer getColor() {
-            return color;
-        }
-    
-        public void setColor(Integer color) {
-            this.color = color;
-        }
-    
-        public Integer getStorageId() {
-            return storageId;
-        }
-    
-        public void setStorageId(Integer storageId) {
-            this.storageId = storageId;
-        }
-    
-        public String getProductionOrder() {
-            return productionOrder;
-        }
-    
-        public void setProductionOrder(String productionOrder) {
-            this.productionOrder = productionOrder;
-        }
+@Table(name = "dbo.Block")
+public class dboBlock
+{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "position", nullable = false)
+    private Short position;
+
+    @Column(name = "color", nullable = false)
+    private Short color;
+
+    @Column(name = "storageId", nullable = false)
+    private Short storageId;
+
+    @Column(name = "productionOrder", nullable = true)
+    private Short productionOrder;
+
+    public Long getId()
+    {
+        return id;
     }
-    
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
+    public Short getPosition()
+    {
+        return position;
+    }
+
+    public void setPosition(Short position)
+    {
+        this.position = position;
+    }
+
+    public Short getColor()
+    {
+        return color;
+    }
+
+    public void setColor(Short color)
+    {
+        this.color = color;
+    }
+
+    public Short getStorageId()
+    {
+        return storageId;
+    }
+
+    public void setStorageId(Short storageId)
+    {
+        this.storageId = storageId;
+    }
+
+    public Short getProductionOrder()
+    {
+        return productionOrder;
+    }
+
+    public void setProductionOrder(Short productionOrder)
+    {
+        this.productionOrder = productionOrder;
+    }
+
+}

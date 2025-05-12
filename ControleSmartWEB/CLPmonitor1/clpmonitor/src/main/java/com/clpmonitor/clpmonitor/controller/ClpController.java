@@ -1,7 +1,10 @@
 package com.clpmonitor.clpmonitor.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import com.clpmonitor.clpmonitor.model.TagWriteRequest;
 import com.clpmonitor.clpmonitor.service.ClpSimulatorService;
 import com.clpmonitor.clpmonitor.util.TagValueParser;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
@@ -25,6 +29,7 @@ public class ClpController {
     // os eventos SSE que serão enviados ao frontend.
     @Autowired
     private ClpSimulatorService simulatorService;
+
 
     // Mapeia a URL raiz (http://localhost:8080/) para o método index().
     // Retorna a view index.html, localizada em src/main/resources/templates/index.html (Thymeleaf).
@@ -109,6 +114,10 @@ public class ClpController {
     public String atualizarGrids() {
         simulatorService.startSimulation();
         return "index";
+    }
+    @GetMapping("/editar_clp1")
+    public String editarClp1(Model model) {
+    return "editar_clp1"; // Retorna a tela que você criou acima
     }
     
 
