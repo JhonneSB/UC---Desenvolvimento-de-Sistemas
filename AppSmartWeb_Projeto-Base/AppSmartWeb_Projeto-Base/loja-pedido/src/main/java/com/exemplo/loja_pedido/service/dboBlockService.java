@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.exemplo.loja_pedido.model.dboBlock;
 import com.exemplo.loja_pedido.repository.dboBlockRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 @Service
 public class dboBlockService
