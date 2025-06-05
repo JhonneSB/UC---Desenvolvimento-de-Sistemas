@@ -1,5 +1,5 @@
- // Função para renderizar os blocos conforme o tipo de pedido selecionado
- function renderBlocos() {
+// Função para renderizar os blocos conforme o tipo de pedido selecionado
+function renderBlocos() {
     const tipo = document.getElementById("tipoPedido").value;
     const container = document.getElementById("blocosContainer");
     container.innerHTML = "";
@@ -16,15 +16,17 @@
             <h2>Bloco ${b + 1}</h2>
 
             <div class="pedido-view" id="pedido-view${nBloco}" data-is-spun="false">
-                    <img class="imagem" id="bloco-${nBloco}" src="assets/bloco/rblocoCor0.png" alt="Bloco">
-                    <img class="imagem" id="lamina${nBloco}-3" src="#" alt="Lâmina 3">
-                    <img class="imagem" id="lamina${nBloco}-1" src="#" alt="Lâmina 1">
-                    <img class="imagem" id="lamina${nBloco}-2" src="#" alt="Lâmina 2">
-                    <img class="imagem" id="padrao${nBloco}-1" src="#" alt="Padrão 1">
-                    <img class="imagem" id="padrao${nBloco}-2" src="#" alt="Padrão 2">
-                    <img class="imagem" id="padrao${nBloco}-3" src="#" alt="Padrão 3">
-                    <button id="spin${nBloco}" class="spin" onclick="spin(${nBloco})"><span
-                            class="material-symbols-rounded">sync</span></button>
+                <div class="bloco-spin-container" id="bloco-spin-container-${nBloco}">
+                    <img class="imagem bloco-img" id="bloco-${nBloco}" src="assets/bloco/rblocoCor0.png" alt="Bloco">
+                </div>
+                <img class="imagem" id="lamina${nBloco}-3" src="#" alt="Lâmina 3">
+                <img class="imagem" id="lamina${nBloco}-1" src="#" alt="Lâmina 1">
+                <img class="imagem" id="lamina${nBloco}-2" src="#" alt="Lâmina 2">
+                <img class="imagem" id="padrao${nBloco}-1" src="#" alt="Padrão 1">
+                <img class="imagem" id="padrao${nBloco}-2" src="#" alt="Padrão 2">
+                <img class="imagem" id="padrao${nBloco}-3" src="#" alt="Padrão 3">
+                <button id="spin${nBloco}" class="spin" onclick="spin(${nBloco})"><span
+                        class="material-symbols-rounded">sync</span></button>
             </div>
             
             <div class="input-box">
@@ -37,76 +39,76 @@
                 </select>
             </div>
             <div class="input-combo">
-                        <div class="input-box">
-                            <label for="l1-color-${nBloco}">Cor Lâmina 1</label>
-                            <select name="l1-color-${nBloco}" id="l1-color-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
-                                <option value="" hidden selected>Selecione</option>
-                                <option value="1">Vermelho</option>
-                                <option value="2">Azul</option>
-                                <option value="3">Amarelo</option>
-                                <option value="4">Verde</option>
-                                <option value="5">Preto</option>
-                                <option value="6">Branco</option>
-                            </select>
-                        </div>
-                        <div class="input-box">
-                            <label for="l1-pattern-${nBloco}">Padrão Lâmina 1</label>
-                            <select name="l1-pattern-${nBloco}" id="l1-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
-                                <option value="" hidden selected>Selecione</option>
-                                <option value="">Nenhum</option>
-                                <option value="1">Casa</option>
-                                <option value="2">Navio</option>
-                                <option value="3">Estrela</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="input-combo">
-                        <div class="input-box">
-                            <label for="l2-color-${nBloco}">Cor Lâmina 2</label>
-                            <select name="l2-color-${nBloco}" id="l2-color-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
-                                <option value="" hidden selected>Selecione</option>
-                                <option value="1">Vermelho</option>
-                                <option value="2">Azul</option>
-                                <option value="3">Amarelo</option>
-                                <option value="4">Verde</option>
-                                <option value="5">Preto</option>
-                                <option value="6">Branco</option>
-                            </select>
-                        </div>
-                        <div class="input-box">
-                            <label for="l2-pattern-${nBloco}">Padrão Lâmina 2</label>
-                            <select name="l2-pattern-${nBloco}" id="l2-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
-                                <option value="" hidden selected>Selecione</option>
-                                <option value="">Nenhum</option>
-                                <option value="1">Casa</option>
-                                <option value="2">Navio</option>
-                                <option value="3">Estrela</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="input-combo">
-                        <div class="input-box">
-                            <label for="l3-color-${nBloco}">Cor Lâmina 3</label>
-                            <select name="l3-color-${nBloco}" id="l3-color-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
-                                <option value="" hidden selected>Selecione</option>
-                                <option value="1">Vermelho</option>
-                                <option value="2">Azul</option>
-                                <option value="3">Amarelo</option>
-                                <option value="4">Verde</option>
-                                <option value="5">Preto</option>
-                                <option value="6">Branco</option>
-                            </select>
-                        </div>
-                        <div class="input-box">
-                            <label for="l3-pattern-${nBloco}">Padrão Lâmina 3</label>
-                            <select name="l3-pattern-${nBloco}" id="l3-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
-                                <option value="" hidden selected>Selecione</option>
-                                <option value="">Nenhum</option>
-                                <option value="1">Casa</option>
-                                <option value="2">Navio</option>
-                                <option value="3">Estrela</option>
-                            </select>
-                        </div>
+                <div class="input-box">
+                    <label for="l1-color-${nBloco}">Cor Lâmina 1</label>
+                    <select name="l1-color-${nBloco}" id="l1-color-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
+                        <option value="" hidden selected>Selecione</option>
+                        <option value="1">Vermelho</option>
+                        <option value="2">Azul</option>
+                        <option value="3">Amarelo</option>
+                        <option value="4">Verde</option>
+                        <option value="5">Preto</option>
+                        <option value="6">Branco</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="l1-pattern-${nBloco}">Padrão Lâmina 1</label>
+                    <select name="l1-pattern-${nBloco}" id="l1-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
+                        <option value="" hidden selected>Selecione</option>
+                        <option value="">Nenhum</option>
+                        <option value="1">Casa</option>
+                        <option value="2">Navio</option>
+                        <option value="3">Estrela</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-combo">
+                <div class="input-box">
+                    <label for="l2-color-${nBloco}">Cor Lâmina 2</label>
+                    <select name="l2-color-${nBloco}" id="l2-color-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
+                        <option value="" hidden selected>Selecione</option>
+                        <option value="1">Vermelho</option>
+                        <option value="2">Azul</option>
+                        <option value="3">Amarelo</option>
+                        <option value="4">Verde</option>
+                        <option value="5">Preto</option>
+                        <option value="6">Branco</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="l2-pattern-${nBloco}">Padrão Lâmina 2</label>
+                    <select name="l2-pattern-${nBloco}" id="l2-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
+                        <option value="" hidden selected>Selecione</option>
+                        <option value="">Nenhum</option>
+                        <option value="1">Casa</option>
+                        <option value="2">Navio</option>
+                        <option value="3">Estrela</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-combo">
+                <div class="input-box">
+                    <label for="l3-color-${nBloco}">Cor Lâmina 3</label>
+                    <select name="l3-color-${nBloco}" id="l3-color-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
+                        <option value="" hidden selected>Selecione</option>
+                        <option value="1">Vermelho</option>
+                        <option value="2">Azul</option>
+                        <option value="3">Amarelo</option>
+                        <option value="4">Verde</option>
+                        <option value="5">Preto</option>
+                        <option value="6">Branco</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <label for="l3-pattern-${nBloco}">Padrão Lâmina 3</label>
+                    <select name="l3-pattern-${nBloco}" id="l3-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
+                        <option value="" hidden selected>Selecione</option>
+                        <option value="">Nenhum</option>
+                        <option value="1">Casa</option>
+                        <option value="2">Navio</option>
+                        <option value="3">Estrela</option>
+                    </select>
+                </div>
             </div>
         `;
 
@@ -189,13 +191,15 @@ function changePedidoView(id, lamina) {
     }
 }
 
-// Gira o pedido com animação 3D
+// Gira apenas a imagem do bloco
 function spin(id) {
+    const blocoContainer = document.getElementById("bloco-spin-container-" + id);
     const view = document.getElementById("pedido-view" + id);
     const isSpun = view.dataset.isSpun !== "true";
     view.dataset.isSpun = isSpun;
     
-    view.classList.toggle("spin");
+    // Aplica a rotação apenas no container do bloco
+    blocoContainer.classList.toggle("spin");
     
     // Atualiza as imagens após a animação
     setTimeout(() => {
@@ -213,7 +217,7 @@ function spin(id) {
 
         lamina1.src = newSrc1;
         lamina3.src = newSrc3;
-    }, 400); // Metade do tempo da animação para suavizar a transição
+    }, 400);
 }
 
 // Envia pedido para a base de dados

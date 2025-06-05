@@ -37,7 +37,7 @@ public class PedidoController {
     public String pedido(Model model) {
         List<Pedido> pedidos = pedidoRepository.findAll();
         model.addAttribute("pedidos", pedidos);
-        return "index";
+        return "loja";
     }
 
     @PostMapping("/store/orders")
