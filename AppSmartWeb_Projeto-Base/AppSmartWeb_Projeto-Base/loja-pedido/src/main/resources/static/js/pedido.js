@@ -1,4 +1,5 @@
-function renderBlocos() {
+ // Função para renderizar os blocos conforme o tipo de pedido selecionado
+ function renderBlocos() {
     const tipo = document.getElementById("tipoPedido").value;
     const container = document.getElementById("blocosContainer");
     container.innerHTML = "";
@@ -14,7 +15,7 @@ function renderBlocos() {
         blocoDiv.innerHTML = `
             <h2>Bloco ${b + 1}</h2>
 
-            <div class="pedido-view spin" id="pedido-view${nBloco}">
+            <div class="pedido-view" id="pedido-view${nBloco}" data-is-spun="false">
                     <img class="imagem" id="bloco-${nBloco}" src="assets/bloco/rblocoCor0.png" alt="Bloco">
                     <img class="imagem" id="lamina${nBloco}-3" src="#" alt="Lâmina 3">
                     <img class="imagem" id="lamina${nBloco}-1" src="#" alt="Lâmina 1">
@@ -23,23 +24,22 @@ function renderBlocos() {
                     <img class="imagem" id="padrao${nBloco}-2" src="#" alt="Padrão 2">
                     <img class="imagem" id="padrao${nBloco}-3" src="#" alt="Padrão 3">
                     <button id="spin${nBloco}" class="spin" onclick="spin(${nBloco})"><span
-                            class="material-symbols-rounded">chevron_right</span></button>
+                            class="material-symbols-rounded">sync</span></button>
             </div>
             
             <div class="input-box">
-                <label  for="block-color-${nBloco}">Cor do Bloco:
-                    <select name="block-color-${nBloco}" id="block-color-${nBloco}" onchange="changePedidoView(${nBloco})">
-                        <option value="">Nenhum</option>
-                        <option value="preto">Preto</option>
-                        <option value="vermelho">Vermelho</option>
-                        <option value="azul">Azul</option>
-                    </select>
-                </label>
+                <label for="block-color-${nBloco}">Cor do Bloco:</label>
+                <select name="block-color-${nBloco}" id="block-color-${nBloco}" onchange="changePedidoView(${nBloco})">
+                    <option value="">Nenhum</option>
+                    <option value="preto">Preto</option>
+                    <option value="vermelho">Vermelho</option>
+                    <option value="azul">Azul</option>
+                </select>
             </div>
             <div class="input-combo">
                         <div class="input-box">
-                            <label for="l1-color-1">Cor Lâmina 1</label>
-                            <select name="l1-color-1" id="l1-color-${nBloco}" disabled onchange="changePedidoView(${nBloco}, this.value)">
+                            <label for="l1-color-${nBloco}">Cor Lâmina 1</label>
+                            <select name="l1-color-${nBloco}" id="l1-color-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
                                 <option value="" hidden selected>Selecione</option>
                                 <option value="1">Vermelho</option>
                                 <option value="2">Azul</option>
@@ -50,8 +50,8 @@ function renderBlocos() {
                             </select>
                         </div>
                         <div class="input-box">
-                            <label for="l1-pattern-1">Padrão Lâmina 1</label>
-                            <select name="l1-pattern-1" id="l1-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco}, this.value)">
+                            <label for="l1-pattern-${nBloco}">Padrão Lâmina 1</label>
+                            <select name="l1-pattern-${nBloco}" id="l1-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
                                 <option value="" hidden selected>Selecione</option>
                                 <option value="">Nenhum</option>
                                 <option value="1">Casa</option>
@@ -62,8 +62,8 @@ function renderBlocos() {
                     </div>
                     <div class="input-combo">
                         <div class="input-box">
-                            <label for="l2-color-1">Cor Lâmina 2</label>
-                            <select name="l2-color-1" id="l2-color-${nBloco}" disabled onchange="changePedidoView(${nBloco}, this.value)">
+                            <label for="l2-color-${nBloco}">Cor Lâmina 2</label>
+                            <select name="l2-color-${nBloco}" id="l2-color-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
                                 <option value="" hidden selected>Selecione</option>
                                 <option value="1">Vermelho</option>
                                 <option value="2">Azul</option>
@@ -74,8 +74,8 @@ function renderBlocos() {
                             </select>
                         </div>
                         <div class="input-box">
-                            <label for="l2-pattern-1">Padrão Lâmina 2</label>
-                            <select name="l2-pattern-1" id="l2-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco}, this.value)">
+                            <label for="l2-pattern-${nBloco}">Padrão Lâmina 2</label>
+                            <select name="l2-pattern-${nBloco}" id="l2-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
                                 <option value="" hidden selected>Selecione</option>
                                 <option value="">Nenhum</option>
                                 <option value="1">Casa</option>
@@ -86,8 +86,8 @@ function renderBlocos() {
                     </div>
                     <div class="input-combo">
                         <div class="input-box">
-                            <label for="l3-color-1">Cor Lâmina 3</label>
-                            <select name="l3-color-1" id="l3-color-${nBloco}" disabled onchange="changePedidoView(${nBloco}, this.value)">
+                            <label for="l3-color-${nBloco}">Cor Lâmina 3</label>
+                            <select name="l3-color-${nBloco}" id="l3-color-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
                                 <option value="" hidden selected>Selecione</option>
                                 <option value="1">Vermelho</option>
                                 <option value="2">Azul</option>
@@ -98,8 +98,8 @@ function renderBlocos() {
                             </select>
                         </div>
                         <div class="input-box">
-                            <label for="l3-pattern-1">Padrão Lâmina 3</label>
-                            <select name="l3-pattern-1" id="l3-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco}, this.value)">
+                            <label for="l3-pattern-${nBloco}">Padrão Lâmina 3</label>
+                            <select name="l3-pattern-${nBloco}" id="l3-pattern-${nBloco}" disabled onchange="changePedidoView(${nBloco})">
                                 <option value="" hidden selected>Selecione</option>
                                 <option value="">Nenhum</option>
                                 <option value="1">Casa</option>
@@ -114,17 +114,12 @@ function renderBlocos() {
     }
 }
 
-// Variável para controle do giro
-let isSpun = false;
-
 // Atualiza a visualização do pedido
 function changePedidoView(id, lamina) {
     const blockColor = document.getElementById("block-color-" + id).value;
 
     if (blockColor !== "") {
-        // alert("Aqui-2 : " + id);
         const idCor = (blockColor === "preto" ? 1 : blockColor === "vermelho" ? 2 : 3);
-        // Atualiza a imagem do bloco com base na cor
         document.getElementById("bloco-" + id).src = "assets/bloco/rBlocoCor" + idCor + ".png";
 
         // Habilita os selects de cor
@@ -133,9 +128,6 @@ function changePedidoView(id, lamina) {
         });
 
         const l1Color = document.getElementById("l1-color-" + id).value;
-
-        // console.log("l1Color = " + l1Color);
-
         const l2Color = document.getElementById("l2-color-" + id).value;
         const l3Color = document.getElementById("l3-color-" + id).value;
 
@@ -145,8 +137,6 @@ function changePedidoView(id, lamina) {
 
         const view = document.getElementById("pedido-view" + id);
         const isSpun = view.dataset.isSpun === "true";
-
-        //console.log("Spun: " + isSpun);
 
         // Atualiza as lâminas e padrões dependendo do giro
         if (isSpun) {
@@ -189,7 +179,6 @@ function changePedidoView(id, lamina) {
             document.getElementById(prefix + id).disabled = true;
         });
 
-        document.getElementById("send-" + id).disabled = true;
         document.getElementById("bloco-" + id).src = "assets/bloco/rBlocoCor0.png";
 
         ["lamina", "padrao"].forEach(prefix => {
@@ -200,29 +189,31 @@ function changePedidoView(id, lamina) {
     }
 }
 
-// Gira o pedido (espelha as lâminas/padrões 1 e 3)
+// Gira o pedido com animação 3D
 function spin(id) {
-    //alert("Aqui em SPIN");
     const view = document.getElementById("pedido-view" + id);
-    view.classList.toggle("spin");
-
     const isSpun = view.dataset.isSpun !== "true";
     view.dataset.isSpun = isSpun;
+    
+    view.classList.toggle("spin");
+    
+    // Atualiza as imagens após a animação
+    setTimeout(() => {
+        const lamina1 = document.getElementById("lamina" + id + "-1");
+        const lamina3 = document.getElementById("lamina" + id + "-3");
 
-    const lamina1 = document.getElementById("lamina" + id + "-1");
-    const lamina3 = document.getElementById("lamina" + id + "-3");
+        const src1 = lamina1.src;
+        const src3 = lamina3.src;
 
-    const src1 = lamina1.src;
-    const src3 = lamina3.src;
+        const newSrc3 = src1.replace(/lamina\d-(\d)/, `lamina3-$1`);
+        const newSrc1 = src3.replace(/lamina\d-(\d)/, `lamina1-$1`);
 
-    const newSrc3 = src1.replace(/lamina\d-(\d)/, `lamina3-$1`);
-    const newSrc1 = src3.replace(/lamina\d-(\d)/, `lamina1-$1`);
+        document.getElementById("padrao" + id + "-3").hidden = !isSpun;
+        document.getElementById("padrao" + id + "-1").hidden = isSpun;
 
-    document.getElementById("padrao" + id + "-3").hidden = !isSpun;
-    document.getElementById("padrao" + id + "-1").hidden = isSpun;
-
-    lamina1.src = newSrc1;
-    lamina3.src = newSrc3;
+        lamina1.src = newSrc1;
+        lamina3.src = newSrc3;
+    }, 400); // Metade do tempo da animação para suavizar a transição
 }
 
 // Envia pedido para a base de dados
@@ -269,10 +260,7 @@ function enviarPedido() {
         });
     });
 
-    //console.log("Pedido:", pedido);
-    console.log(JSON.stringify(pedido, null, 2));
-
-
+    console.log("Pedido:", JSON.stringify(pedido, null, 2));
 
     fetch("/store/orders", {
         method: "POST",
@@ -294,7 +282,6 @@ function listarPedidos() {
         .then(response => response.json())
         .then(data => {
             const listaContainer = document.getElementById("listaPedidos");
-            // listaContainer.innerHTML = "<h2>Pedidos Recebidos</h2>";
             listaContainer.innerHTML = ""; // limpa conteúdo anterior
 
             if (data.length === 0) {
@@ -327,4 +314,5 @@ function listarPedidos() {
         });
 }
 
+// Inicializa a página
 window.onload = renderBlocos;
