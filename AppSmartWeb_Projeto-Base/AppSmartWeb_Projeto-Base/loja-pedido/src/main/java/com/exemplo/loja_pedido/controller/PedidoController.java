@@ -5,6 +5,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -98,20 +100,34 @@ public class PedidoController {
         return pedidoRepository.findAll();
     }
 
-    @DeleteMapping("/api/pedidos/{id}")
-    @ResponseBody
-    public String excluirPedido(@PathVariable Long id) {
+    @DeleteMapping("/api/pedidos/{id}")  // Alterado para corresponder ao chamado no JS
+public ResponseEntity<String> excluirPedido(@PathVariable Long id) {
+    try {
         Optional<Pedido> pedido = pedidoRepository.findById(id);
+        
         if (pedido.isPresent()) {
             pedidoRepository.deleteById(id);
-            return "DELETADO";
+            return ResponseEntity.ok("DELETADO");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Pedido não encontrado");
         }
-        return "NAO ENCONTRADO";
+    } catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body("Erro ao excluir pedido: " + e.getMessage());
     }
+}
 
 @GetMapping("/editar_clp1")
 public String editarClp1(Model model) {
 return "editar_clp1"; // Retorna a tela que você criou acima
 
 }
+@GetMapping("/listar_pedidos")
+public String listarPedidosPage(Model model) {
+    List<Pedido> pedidos = pedidoRepository.findAll();
+    model.addAttribute("pedidos", pedidos);
+    return "lista_pedido"; // Nome do template Thymeleaf
+}
+
 }

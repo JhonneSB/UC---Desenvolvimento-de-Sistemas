@@ -13,10 +13,12 @@ function renderBlocos() {
         blocoDiv.classList.add("bloco");
         blocoDiv.id = "bloco-container-" + nBloco;
         blocoDiv.innerHTML = `
-            <h2>Bloco ${b + 1}</h2>
-
-            <div class="pedido-view" id="pedido-view${nBloco}" data-is-spun="false">
-                <div class="bloco-spin-container" id="bloco-spin-container-${nBloco}">
+        <h2>Bloco ${b + 1}</h2>
+    
+        <div class="pedido-view" id="pedido-view${nBloco}" data-is-spun="false">
+            <!-- Container que vai girar - apenas imagens -->
+            <div class="images-container" id="images-container-${nBloco}">
+                <div class="bloco-spin-container">
                     <img class="imagem bloco-img" id="bloco-${nBloco}" src="assets/bloco/rblocoCor0.png" alt="Bloco">
                 </div>
                 <img class="imagem" id="lamina${nBloco}-3" src="#" alt="Lâmina 3">
@@ -25,9 +27,12 @@ function renderBlocos() {
                 <img class="imagem" id="padrao${nBloco}-1" src="#" alt="Padrão 1">
                 <img class="imagem" id="padrao${nBloco}-2" src="#" alt="Padrão 2">
                 <img class="imagem" id="padrao${nBloco}-3" src="#" alt="Padrão 3">
-                <button id="spin${nBloco}" class="spin" onclick="spin(${nBloco})"><span
-                        class="material-symbols-rounded">sync</span></button>
             </div>
+            <button id="spin${nBloco}" class="spin" onclick="spin(${nBloco})">
+                <span class="material-symbols-rounded">sync</span>
+            </button>
+        </div>
+        
             
             <div class="input-box">
                 <label for="block-color-${nBloco}">Cor do Bloco:</label>
@@ -111,6 +116,7 @@ function renderBlocos() {
                 </div>
             </div>
         `;
+        
 
         container.appendChild(blocoDiv);
     }
@@ -193,13 +199,18 @@ function changePedidoView(id, lamina) {
 
 // Gira apenas a imagem do bloco
 function spin(id) {
-    const blocoContainer = document.getElementById("bloco-spin-container-" + id);
+    const blocoImg = document.getElementById("bloco-" + id);
     const view = document.getElementById("pedido-view" + id);
     const isSpun = view.dataset.isSpun !== "true";
     view.dataset.isSpun = isSpun;
     
-    // Aplica a rotação apenas no container do bloco
-    blocoContainer.classList.toggle("spin");
+    // Adiciona a classe de animação ao bloco
+    blocoImg.classList.add("spin-animation");
+    
+    // Remove a classe após a animação terminar
+    blocoImg.addEventListener("animationend", function() {
+        blocoImg.classList.remove("spin-animation");
+    }, {once: true});
     
     // Atualiza as imagens após a animação
     setTimeout(() => {
@@ -217,7 +228,7 @@ function spin(id) {
 
         lamina1.src = newSrc1;
         lamina3.src = newSrc3;
-    }, 400);
+    }, 500); // Tempo deve coincidir com a duração da animação
 }
 
 // Envia pedido para a base de dados
@@ -278,44 +289,6 @@ function enviarPedido() {
             alert("Erro ao enviar pedido.");
         }
     });
-}
-
-// Lista pedidos no frontend
-function listarPedidos() {
-    fetch("/store/orders")
-        .then(response => response.json())
-        .then(data => {
-            const listaContainer = document.getElementById("listaPedidos");
-            listaContainer.innerHTML = ""; // limpa conteúdo anterior
-
-            if (data.length === 0) {
-                listaContainer.innerHTML += "<p>Nenhum pedido encontrado.</p>";
-                return;
-            }
-
-            data.forEach((pedido, index) => {
-                const pedidoDiv = document.createElement("div");
-                pedidoDiv.classList.add("pedido");
-
-                pedidoDiv.innerHTML = `<h3>Pedido ${index + 1} - Tipo: ${pedido.tipo}</h3>`;
-
-                pedido.blocos.forEach((bloco, i) => {
-                    const blocoDiv = document.createElement("div");
-                    blocoDiv.innerHTML = `<strong>Bloco ${i + 1}</strong> - Cor: ${bloco.cor}<br>`;
-
-                    bloco.laminas.forEach((lamina, j) => {
-                        blocoDiv.innerHTML += `&nbsp;&nbsp;Lâmina ${j + 1} - Cor: ${lamina.cor}, Padrão: ${lamina.padrao}<br>`;
-                    });
-
-                    pedidoDiv.appendChild(blocoDiv);
-                });
-
-                listaContainer.appendChild(pedidoDiv);
-            });
-        })
-        .catch(() => {
-            alert("Erro ao carregar pedidos.");
-        });
 }
 
 // Inicializa a página
