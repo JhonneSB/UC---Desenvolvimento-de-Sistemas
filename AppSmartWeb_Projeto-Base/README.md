@@ -69,7 +69,7 @@ Este projeto foi desenvolvido durante o curso Técnico em Desenvolvimento de Sis
 
 ---
 
-## 👤 Autor
+## 👤 Autores
 
 <p align="center">
   <b>Carlos Jhonne</b>  
@@ -78,6 +78,15 @@ Este projeto foi desenvolvido durante o curso Técnico em Desenvolvimento de Sis
   <a href="mailto:carlosjhonne7@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
   <a href="https://www.linkedin.com/in/carlos-jhonne/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
   <a href="https://github.com/JhonneSB"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
+</p>
+
+<p align="center">
+  <b>Miiguel Augusto</b>  
+  <br/>Estudante do SENAI - Técnico em Desenvolvimento de Sistemas  
+  <br/><br/>
+  <a href="mailto:miguelazuoss@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+  <a href="https://www.linkedin.com/in/carlos-jhonne/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="https://www.linkedin.com/in/miguel-augusto-3319b9227/"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a>
 </p>
 
 ---
