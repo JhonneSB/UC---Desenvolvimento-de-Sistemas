@@ -58,14 +58,6 @@ Este projeto foi desenvolvido durante o curso Técnico em Desenvolvimento de Sis
 
 ---
 
-## 🧩 Funcionalidades Futuras
-
-- Comunicação com sensores/atuadores da bancada
-- Dashboard com dados em tempo real
-- Login de operadores e administradores
-- Histórico de pedidos e etapas de produção
-
----
 
 ## 👤 Autores
 
