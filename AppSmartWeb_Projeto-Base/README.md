@@ -40,9 +40,7 @@ Este projeto foi desenvolvido durante o curso Técnico em Desenvolvimento de Sis
 
 ┣ 📂service # Regras de negócio
 
-┃
-
-┣ 📂resources
+┃┣ 📂resources
 
   ┃ ┣ 📂templates # Páginas HTML (Thymeleaf)
 
