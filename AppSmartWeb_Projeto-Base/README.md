@@ -43,9 +43,9 @@ Este projeto foi desenvolvido durante o curso Técnico em Desenvolvimento de Sis
 ┃
 ┣ 📂resources
 
-┃ ┣ 📂templates # Páginas HTML (Thymeleaf)
+  ┃ ┣ 📂templates # Páginas HTML (Thymeleaf)
 
-┃ ┗ 📂static # CSS, JS e imagens
+    ┃ ┗ 📂static # CSS, JS e imagens
 
 ---
 
