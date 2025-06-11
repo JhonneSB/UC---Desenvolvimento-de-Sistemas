@@ -91,4 +91,4 @@ Este projeto foi desenvolvido durante o curso Técnico em Desenvolvimento de Sis
 
 ---
 
-<p align="center">🌱 Em constante evolução. Um projeto de cada vez.</p>
+<p align="center"> Sitiuação de Aprendizagem - SA do terceiro semestre so Tédnico em Desenvolvimento de Sistemas.</p>
