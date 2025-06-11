@@ -28,12 +28,14 @@
                 <div th:each="pedido : ${pedidos}" class="pedido-card">
                     <div class="pedido-header">
                         <h3>Pedido #<span th:text="${pedido.id}"></span></h3>
-                        <span class="pedido-tipo" th:text="${pedido.tipo}"></span>
+                        <span class="pedido-tipo" th:text="${pedido.tipo == 'simples' ? 'Simples' : pedido.tipo == 'duplo' ? 'Duplo' : 'Triplo'}"></span>
                     </div>
                     
                     <div class="blocos-container">
                         <div th:each="bloco, stat : ${pedido.blocos}" class="bloco-item">
-                            <h4>Bloco <span th:text="${stat.count}"></span> - Cor: <span th:text="${bloco.cor}"></span></h4>
+                            <h4>Bloco <span th:text="${stat.count}"></span> - Cor: 
+                                <span th:text="${bloco.cor == 'preto' ? 'Preto' : bloco.cor == 'vermelho' ? 'Vermelho' : bloco.cor == 'azul' ? 'Azul' : 'Nenhuma'}"></span>
+                            </h4>
                             
                             <div class="laminas-info">
                                 <span class="material-symbols-rounded">layers</span>
@@ -43,17 +45,26 @@
                             <div class="laminas-detalhes">
                                 <div th:each="lamina : ${bloco.laminas}" class="lamina-item">
                                     <span class="material-symbols-rounded">colorize</span>
-                                    <span th:text="${lamina.cor}"></span>
-                                    <span class="lamina-padrao" th:if="${lamina.padrao}" th:text="'(' + ${lamina.padrao} + ')'"></span>
+                                    <span th:text="${lamina.cor == '1' ? 'Vermelho' : lamina.cor == '2' ? 'Azul' : 'Preto'}"></span>
+                                    <span class="lamina-padrao" 
+                                          th:if="${lamina.padrao != null and lamina.padrao != '0'}" 
+                                          th:text="'(' + ${lamina.padrao == '1' ? 'Casa' : 
+                                                            lamina.padrao == '2' ? 'Navio' : 
+                                                            lamina.padrao == '3' ? 'Estrela' : ''} + ')'">
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <button class="btn-excluir" data-id="${pedido.id}" th:attr="data-id=${pedido.id}">
-                        <span class="material-symbols-rounded">delete</span> Excluir Pedido
-                    </button>
-                    
+                    <div class="pedido-actions">
+                        <button class="btn-confirmar" th:attr="data-id=${pedido.id}">
+                            <span class="material-symbols-rounded">check_circle</span> Confirmar Pedido
+                        </button>
+                        <button class="btn-excluir" data-id="${pedido.id}" th:attr="data-id=${pedido.id}">
+                            <span class="material-symbols-rounded">delete</span> Excluir Pedido
+                        </button>
+                    </div>
                 </div>
                 
                 <div th:if="${pedidos.empty}" class="sem-pedidos">
@@ -76,5 +87,16 @@
     </button>
 
     <script src="/js/lista_pedido.js"></script>
+    <script>
+        // Adicionando funcionalidade para o botão de confirmar pedido
+        document.querySelectorAll('.btn-confirmar').forEach(button => {
+            button.addEventListener('click', function() {
+                const pedidoId = this.getAttribute('data-id');
+                if(confirm(`Deseja confirmar o pedido #${pedidoId}?`)) {
+                    window.location.href = `/processo_bancada?id=${pedidoId}`;
+                }
+            });
+        });
+    </script>
 </body>
 </html>

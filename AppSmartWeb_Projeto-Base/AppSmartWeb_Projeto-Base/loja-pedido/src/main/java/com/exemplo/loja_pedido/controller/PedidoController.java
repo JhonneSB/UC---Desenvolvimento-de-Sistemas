@@ -35,6 +35,11 @@ public class PedidoController {
         return "home";
     }
 
+    @GetMapping("/processo_bancada")
+    public String mostrarPaginaPedidos() {
+        return "processo_bancada"; //
+    }
+
         @GetMapping("/pedidos")
     public String pedido(Model model) {
         List<Pedido> pedidos = pedidoRepository.findAll();

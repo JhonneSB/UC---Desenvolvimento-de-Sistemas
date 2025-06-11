@@ -159,6 +159,20 @@
     background-color: var(--azul-secundario);
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    height: 3.25rem;
+}
+
+.left-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* 14px */
+  }
+
 /* Adaptação para mobile */
 @media (max-width: 768px) {
     .pedidos-container {
@@ -167,5 +181,59 @@
     
     .pedido-card {
         padding: 15px;
+    }
+}
+
+/* Estilos para os botões de ação do pedido */
+.pedido-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-confirmar {
+    flex: 1;
+    padding: 10px;
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+    border: 1px solid #2ecc71;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-confirmar:hover {
+    background-color: rgba(46, 204, 113, 0.3);
+}
+
+.btn-excluir {
+    flex: 1;
+    padding: 10px;
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-excluir:hover {
+    background-color: rgba(231, 76, 60, 0.3);
+}
+
+/* Adaptação para mobile */
+@media (max-width: 768px) {
+    .pedido-actions {
+        flex-direction: column;
     }
 }
