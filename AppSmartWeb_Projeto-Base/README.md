@@ -33,12 +33,18 @@ Este projeto foi desenvolvido durante o curso Técnico em Desenvolvimento de Sis
 
 📦 src
 ┣ 📂controller # Controladores (camada web)
+
 ┣ 📂model # Entidades do domínio
+
 ┣ 📂repository # Interfaces JPA
+
 ┣ 📂service # Regras de negócio
+
 ┃
 ┣ 📂resources
+
 ┃ ┣ 📂templates # Páginas HTML (Thymeleaf)
+
 ┃ ┗ 📂static # CSS, JS e imagens
 
 ---
