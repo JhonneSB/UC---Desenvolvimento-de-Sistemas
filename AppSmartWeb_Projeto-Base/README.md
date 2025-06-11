@@ -23,8 +23,8 @@ Este projeto foi desenvolvido durante o curso Técnico em Desenvolvimento de Sis
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="45px" title="HTML5" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="45px" title="CSS3" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="45px" title="JavaScript" />
-  <img src="https://cdn-icons-png.flaticon.com/512/5968/5968342.png" width="45px" title="JPA (Hibernate)" />
-  <img src="https://cdn-icons-png.flaticon.com/512/5968/5968332.png" width="45px" title="Thymeleaf" />
+  <img src="https://img.icons8.com/fluency/48/database.png" width="45px" title="JPA (Java Persistence API)" />
+  <img src="https://www.thymeleaf.org/images/thymeleaf.png" width="45px" title="Thymeleaf" />
 </div>
 
 ---
