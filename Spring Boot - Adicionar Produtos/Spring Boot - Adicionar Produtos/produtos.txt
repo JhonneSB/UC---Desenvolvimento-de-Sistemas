@@ -1,4 +1,0 @@
-101;Microcomputador i9 3200MHz;15;3800.55
-102;Mouse sem-fio;10;38.45
-103;Monitor Samsung 144Hz;33;580.25
-104;Teclado universal 104 teclas;45;120.55
