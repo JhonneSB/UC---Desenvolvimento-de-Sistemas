@@ -79,7 +79,7 @@ Este projeto foi desenvolvido durante o curso Técnico em Desenvolvimento de Sis
 </p>
 
 <p align="center">
-  <b>Miiguel Augusto</b>  
+  <b>Miguel Augusto</b>  
   <br/>Estudante do SENAI - Técnico em Desenvolvimento de Sistemas  
   <br/><br/>
   <a href="mailto:miguelazuoss@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
