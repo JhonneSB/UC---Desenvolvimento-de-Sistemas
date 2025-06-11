@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=FFFFFF,50:2C5364,100:203A43&height=150&section=header&text=AppSmartWeb&fontSize=38&fontAlign=center&animation=fadeIn&fontColor=FFFFFF" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0A2647,50:144272,100:2C74B3&height=150&section=header&text=AppSmartWeb&fontSize=38&fontAlign=center&animation=fadeIn&fontColor=FFFFFF" />
 </p>
 
 <h3 align="center">Projeto Integrador - SENAI | Desenvolvimento de Sistemas</h3>
